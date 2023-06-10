@@ -1,0 +1,16 @@
+database:
+
+  driver: sqlite # mysql, sqlite
+
+  sqlite:
+    path: /storage/data
+    database: database.sqlite
+
+#  mysql:
+#    host: "%env(MYSQL_HOST)%"
+#    port: "%env(MYSQL_PORT)%"
+#    database: "%env(MYSQL_DATABASE)%"
+#    username: "%env(MYSQL_USERNAME)%"
+#    password: "%env(MYSQL_PASSWORD)%"
+#    charset: utf8mb4
+#    collation: utf8mb4_unicode_ci

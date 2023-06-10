@@ -1,0 +1,11 @@
+logs:
+
+  output:
+    type: [file, console] # [] -> file|console
+    prefix: "[{date}] [{channel}] [{file}:{line}] {message}"
+    date: "Y-m-d H:i:s"
+
+  file:
+    path: /storage/logs
+    name: app.log
+    compress: true

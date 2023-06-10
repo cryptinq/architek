@@ -1,0 +1,9 @@
+cli:
+
+  arguments:
+
+    - short: t
+      long: task
+      required: true
+      description: Task to execute
+      value: { type: string, default: default }
