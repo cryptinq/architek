@@ -1,0 +1,65 @@
+import os
+from libs.colors import c
+
+
+def stdout(message):
+    print(c("§8[§7INSTALLER§8] §r" + message))
+
+
+def install():
+
+    # first check if pip is installed
+    try:
+        import pip
+    except ImportError:
+        stdout("§cPip is not installed. Please install pip and try again.")
+        return
+
+    # then check if venv is installed
+    try:
+        import venv
+    except ImportError:
+        stdout("§cVenv is not installed. Please install venv and try again.")
+        return
+
+    # make venv
+    stdout("§7Creating virtual environment...")
+    os.system("python -m venv venv")
+
+    # make activate script
+    stdout("§7Creating activate script...")
+    with open(os.path.join(os.path.dirname(__file__), "bin/activate"), "w") as file:
+        stub = f"""
+        import os
+        os.system("source {os.path.dirname(__file__)}/venv/Scripts/activate")
+        """
+        file.write(stub)
+
+    # run venv
+    stdout("§7Activating virtual environment...")
+    os.system("python bin/activate")
+
+    # install dependencies
+    stdout("§7Installing dependencies...")
+    os.system("pip install -r requirements.txt")
+
+
+if __name__ == "__main__":
+
+    root = os.path.dirname(__file__)
+
+    print(c("§8[§7INSTALLER§8] §fWelcome to the installer for §b§l{project_name}§r§7!"))
+    print(c("§8[§7INSTALLER§8] §fThis installer will create a virtual environment and install all dependencies."))
+    print(c("§8[§7INSTALLER§8] §fPlease make sure you have pip and venv installed."))
+    print(c("§8[§7INSTALLER§8] §fPress §bENTER§r§7 to continue or §bCTRL+C§r§7 to exit."))
+    input()
+
+    if not os.path.exists(os.path.join(root, "main.py")):
+        stdout("§cPlease run this script from the root directory of the project.")
+        exit()
+
+    if os.path.exists(os.path.join(root, "bin/activate")):
+        stdout("§cVirtual environment already exists. Please delete it and try again.")
+        exit()
+
+    install()

@@ -9,4 +9,9 @@ class KernelInterface:
     def bootstrap(self, interface):
         return interface.boot(self)
 
+    def throw(self, message):
+        self.app("console").error("-" * 20 + " FATAL ERROR " + "-" * 20 + " \n\n" + message)
+        exit(1)
 
+    def kill(self):
+        exit(1)

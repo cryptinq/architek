@@ -10,27 +10,27 @@ console:
         required: false
         value: { type: boolean, default: false }
 
-  - name: database:drop
-    namespace: core.kernel.console.commands.database
-    class: DatabaseDropCommand
-    description: Drop database
-
-  - name: database:recreate
-    namespace: core.kernel.console.commands.database
-    class: DatabaseRecreateCommand
-    description: Recreate database
-    arguments:
-      - short: s
-        long: seed
-        required: false
-        value: { type: boolean, default: false }
-
-  - name: database:seed
-    namespace: core.kernel.console.commands.database
-    class: DatabaseSeedCommand
-    description: Seed database
-    arguments:
-      - short: s
-        long: seed
-        required: false
-        value: { type: boolean, default: false }
+#  - name: database:drop
+#    namespace: core.kernel.console.commands.database
+#    class: DatabaseDropCommand
+#    description: Drop database
+#
+#  - name: database:recreate
+#    namespace: core.kernel.console.commands.database
+#    class: DatabaseRecreateCommand
+#    description: Recreate database
+#    arguments:
+#      - short: s
+#        long: seed
+#        required: false
+#        value: { type: boolean, default: false }
+#
+#  - name: database:seed
+#    namespace: core.kernel.console.commands.database
+#    class: DatabaseSeedCommand
+#    description: Seed database
+#    arguments:
+#      - short: s
+#        long: seed
+#        required: false
+#        value: { type: boolean, default: false }

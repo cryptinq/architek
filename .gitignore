@@ -1,0 +1,4 @@
+venv/ # ignore virtual environment
+__pycache__/ # ignore __pycache__ directorie in root
+**/__pycache__/ # ignore all __pycache__ directories
+

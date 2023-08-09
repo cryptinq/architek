@@ -11,10 +11,13 @@ class KernelConsoleInterface:
 
     def __init__(self, kernel):
         self.kernel = kernel
-        self.kernel_console = KernelConsole()
+        self.kernel_console = KernelConsole(kernel)
         self.initialize()
 
     def initialize(self):
+
         configuration: KernelConfiguration = self.kernel.app("configuration")
         kernel_commands = configuration.get("kernel.console")
-        self.kernel_console.info("Loading kernel console commands...")
+
+        for kernel_command in kernel_commands:
+            self.kernel_console.register(kernel_command)

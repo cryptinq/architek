@@ -3,14 +3,14 @@
 * [OK] Load the kernel
 * [OK] Load the configurations files
 
-* Initialize the core providers
-  * Load the environment variables
+* [OK] Initialize the core providers
+  * [OK] Load the environment variables provider
  
 * Initialize the core services
   * Initialize the logger
   * Initialize the arguments parser
-
-* Initialize the database connection
+  * Initialize the database connection
+  
 * Initialize the ORM (= entities & repositories)
 
 * Initialize the services
