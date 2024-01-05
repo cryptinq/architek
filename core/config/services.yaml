@@ -1,0 +1,3 @@
+services:
+
+  LoggingService: { namespace: core.services.logging, identifier: core.logging, singleton: true }

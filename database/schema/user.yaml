@@ -1,0 +1,11 @@
+entity:
+
+  name: User
+  table: user
+  timestamp: true
+  key: { name: id, generator: autoincrement } # or { name: uuid, generator: uuid } or { name: my_row, generator: custom }
+  fields:
+    - id: { type: integer, primary: true, autoincrement: true }
+    - name: { type: string, length: 255 }
+    - email: { type: string, length: 255 }
+    - password: { type: string, length: 255 }

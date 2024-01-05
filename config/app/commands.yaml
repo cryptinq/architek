@@ -1,0 +1,11 @@
+commands:
+
+    - name: test.test
+      description: Create database
+      namespace: app.commands
+      class: DatabaseCreateCommand
+      arguments:
+        - short: s
+          long: seed
+          required: false
+          value: { type: boolean, default: false }

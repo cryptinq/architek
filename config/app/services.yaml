@@ -1,0 +1,3 @@
+services:
+
+  ExampleService: { namespace: app.services, identifier: app.example, singleton: false }

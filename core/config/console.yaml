@@ -1,0 +1,61 @@
+console:
+
+  - name: architek
+    namespace: core.kernel.console.commands
+    class: ArchitekCommand
+    description: Architek Framework - Python
+
+  - name: start
+    namespace: core.kernel.console.commands
+    class: StartCommand
+    description: Start the application
+
+  - name: help
+    namespace: core.kernel.console.commands
+    class: HelpCommand
+    description: Get list of commands
+
+  - name: key:generate
+    namespace: core.kernel.console.commands.key
+    class: KeyGenerateCommand
+    description: Generate Key for your application
+
+  - name: key:show
+    namespace: core.kernel.console.commands.key
+    class: KeyShowCommand
+    description: Show the application key
+
+  - name: database:create
+    description: Create database
+    namespace: core.kernel.console.commands.database
+    class: DatabaseCreateCommand
+    arguments:
+      - short: s
+        long: seed
+        required: false
+        value: { type: boolean, default: false }
+
+  - name: database:drop
+    namespace: core.kernel.console.commands.database
+    class: DatabaseDropCommand
+    description: Drop database
+
+  - name: database:recreate
+    namespace: core.kernel.console.commands.database
+    class: DatabaseRecreateCommand
+    description: Recreate database
+    arguments:
+      - short: s
+        long: seed
+        required: false
+        value: { type: boolean, default: false }
+
+  - name: database:seed
+    namespace: core.kernel.console.commands.database
+    class: DatabaseSeedCommand
+    description: Seed database
+    arguments:
+      - short: s
+        long: seed
+        required: false
+        value: { type: boolean, default: false }

@@ -1,0 +1,28 @@
+logger:
+
+  channels:
+
+    - kernel:
+        default:
+          color: 238 #444444
+          prefix: "KERNEL"
+        services:
+          color: 63 #5F5FF6
+          prefix: "SERVICE"
+        database:
+          color: 33 #3A85F7
+          prefix: "DATABASE"
+
+    - app:
+        info:
+          color: 238 #444444
+          prefix: "INFO"
+        debug:
+          color: 208 #EF8D34
+          prefix: "DEBUG"
+        warning:
+          color: 227 #FFFF7A
+          prefix: "WARNING"
+        error:
+          color: 1 # D17277
+          prefix: "ERROR"
