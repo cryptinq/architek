@@ -31,6 +31,15 @@ class FileSystem:
             file.close()
 
     @staticmethod
+    def content(path)-> str:
+        content = ""
+        with open(path, "r") as file:
+            content = file.read()
+            file.close()
+        return content
+
+
+    @staticmethod
     def file_exist(path):
         return os.path.isfile(path)
 

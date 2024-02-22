@@ -1,4 +1,23 @@
-venv
+# Ignore IntelliJ IDEA project files
 .idea/
+
+# Ignore Python bytecode files
 __pycache__/
 **/__pycache__
+
+# Ignore macOS system files
+.DS_Store
+
+# Ignore virtual environment directory
+venv
+
+# Ignore environment configuration file
+.env
+
+# Ignore cache files in the storage directory
+storage/cache/*
+!storage/cache/.gitkeep  # Preserve the empty cache directory
+
+# Ignore all files in the data directory
+storage/data/*
+!storage/data/.gitkeep  # Preserve the empty data directory

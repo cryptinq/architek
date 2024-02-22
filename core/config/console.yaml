@@ -59,3 +59,13 @@ console:
         long: seed
         required: false
         value: { type: boolean, default: false }
+
+  - name: entity:generate
+    namespace: core.kernel.console.commands.entity
+    class: EntityGenerateCommand
+    description: Generate entity classes from database schema
+    arguments:
+      - short: f
+        long: force
+        required: false
+        value: { type: boolean, default: false }

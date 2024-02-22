@@ -19,7 +19,7 @@ class ORMInterface:
 
     def __init__(self, kernel):
         self.kernel = kernel
-        self.orm = ORM()
+        self.orm = ORM(kernel)
         self.initialize()
 
     def initialize(self):

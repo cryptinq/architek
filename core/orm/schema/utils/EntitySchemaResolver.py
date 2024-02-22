@@ -3,6 +3,8 @@ from core.kernel.file.helpers.FileSystem import FileSystem as fs
 
 class EntitySchemaResolver:
 
+
+
     @staticmethod
     def resolve_entities(orm):
         schemas = {}
@@ -21,3 +23,6 @@ class EntitySchemaResolver:
                 schema_file.close()
 
         return schemas
+
+    # @staticmethod
+    # def resolve_class_from_schema(schema_name):

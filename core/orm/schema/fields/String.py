@@ -32,3 +32,5 @@ class StringField(Field):
             self.length = self.get_attribute("length")
 
     def sql(self): return f"VARCHAR({self.length})"
+
+    def definition(self): return f"{self.name}: str"

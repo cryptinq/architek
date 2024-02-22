@@ -23,3 +23,5 @@ class Field:
     def is_primary(self):
         if not self.has_attribute("primary"): return False
         return self.get_attribute("primary")
+
+    def imports(self): return False

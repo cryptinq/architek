@@ -1,6 +1,7 @@
 from core.orm.schema.configuration.Field import Field
 from core.exceptions.KernelException import KernelException
 from core.orm.schema.enums.RelationType import RelationType
+from core.kernel.interface.KernelInterface import KernelInterface
 
 
 class RelationField(Field):
@@ -10,6 +11,8 @@ class RelationField(Field):
 
     def __init__(self, entity_name: str, field_name: str, field_data: dict):
         super().__init__(entity_name, field_name, field_data)
+
+        self.orm = KernelInterface.instance().app("orm")
 
         self.related_entity = None
         self.related_field = None
@@ -50,3 +53,11 @@ class RelationField(Field):
             )
 
     def sql(self): return f"INTEGER"
+
+    def definition(self):
+        entity_scheme = self.orm.resolve_schema(self.get_attribute("entity"))
+        return f"{self.name}: {entity_scheme.name}"
+
+    def imports(self):
+        entity_scheme = self.orm.resolve_schema(self.get_attribute("entity"))
+        return f"from common.entities.{entity_scheme.name} import {entity_scheme.name}"

@@ -10,7 +10,7 @@ class KeySet:
         self._configuration = configuration
 
     def get(self, key: str):
-        if key not in self.keys(): raise KernelException("KeyNotFoundException", key)
+        if key not in self.keys(): KernelException("KeyNotFoundException", key)
         return KeySet(self._configuration[key]) \
             if isinstance(self._configuration[key], dict) \
             else self._configuration[key]

@@ -32,6 +32,7 @@ class Kernel(KernelInterface):
     def finalize(self):
 
         self.orm: ORM = self.bootstrap(ORMInterface)
+        self.orm.initialize()
 
         return self
 
