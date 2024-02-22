@@ -20,6 +20,7 @@ class KeySet:
     def is_empty(self): return len(self.keys()) == 0
 
     def keys(self): return self._keys
+    def has_key(self, key): return key in self.keys()
 
     def has_keys(self, keys: list): return all(key in self.keys() for key in keys)
     def missing_keys(self, keys: list) -> Optional[List]: return [key for key in keys if key not in self.keys()]

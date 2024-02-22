@@ -6,7 +6,7 @@ class KernelExceptionInterface:
     _CONSOLE = None
 
     @staticmethod
-    # @KernelDecorator.boot
+    @KernelDecorator.boot
     def boot(kernel): KernelExceptionInterface._CONSOLE = kernel.app("console")
 
     @staticmethod

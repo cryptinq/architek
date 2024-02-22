@@ -1,11 +1,15 @@
+from datetime import datetime
+from time import time
 from typing import Optional
-
-import yaml
 
 from core.Kernel import Kernel
 from core.kernel.console.base.BaseCommand import BaseCommand
-from core.kernel.file.helpers.FileSystem import FileSystem as fs
 from core.orm.ORM import ORM
+from core.orm.schema.utils.EntitySchemaResolver import EntitySchemaResolver
+from core.orm.schema.utils.EntitySchemaParser import EntitySchemaParser
+from core.orm.schema.utils.EntitySchemaValidator import EntitySchemaValidator
+from core.orm.sql.generator.SQLGenerator import SQLGenerator
+from core.orm.schema.Schema import Schema
 
 
 class DatabaseCreateCommand(BaseCommand):
@@ -17,38 +21,21 @@ class DatabaseCreateCommand(BaseCommand):
 
     def invoke(self):
 
-        self.schemas = self.resolve_entities()
+        start_time = time()
 
-        self.parse_schemas()
-        self.validate_schemas()
+        # resolve & parse schemas from yaml files
+        self.schemas = EntitySchemaResolver.resolve_entities(self.orm)
+        self.schemas = EntitySchemaParser.parse_schemas(self.schemas)
 
-        print(self.schemas)
+        # ensure that schemas are valid
+        schemas_objects = (EntitySchemaValidator(self.schemas)).validate()
 
-    def resolve_entities(self):
-        schemas = {}
+        sql_statement = (SQLGenerator()).generate_from_schemas(schemas_objects)
 
-        for schema_file_name in fs.list_files(self.orm.SCHEMAS_PATH, ".yaml"):
+        if self.orm.driver.execute_script(sql_statement):
+            for key in schemas_objects.keys():
+                schema: Schema = schemas_objects[key]
+                self.console.info(f"Create table '{schema.table}' with columns: {[schema.fields[name].name for name in schema.fields.keys()]}")
 
-            schema_file_path = fs.join(self.orm.SCHEMAS_PATH, schema_file_name)
-            schema_file_name_raw = schema_file_name.replace(".yaml", "")
-
-            with open(schema_file_path, "r") as schema_file:
-                schemas[schema_file_name_raw] = {
-                    "__data": {
-                        "file": schema_file_name,
-                        "raw_yaml": schema_file.read()
-                    }
-                }
-                schema_file.close()
-
-        return schemas
-
-    def parse_schemas(self):
-        for schema in self.schemas.keys():
-            self.schemas[schema]["__data"]["parsed_yaml"] = yaml.safe_load(
-                self.schemas[schema]["__data"]["raw_yaml"]
-            )
-        return self.schemas
-
-    def validate_schemas(self):
-        pass
+        print("")
+        self.console.success(f"Database created successfully in {((time() - start_time) * 1000):.2f}ms")

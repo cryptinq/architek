@@ -7,4 +7,4 @@ entity:
   fields:
     - id: { type: integer, primary: true, autoincrement: true }
     - name: { type: string, length: 255 }
-    - user: { type: relation, entity: user, field: id, reference: user_id, relation: many_to_one }
+    - user: { type: relation, entity: user, field: id, relation: many_to_one }

@@ -31,11 +31,12 @@ class ORMInterface:
         driver_configuration = configuration.get("app.database", driver)
 
         orm_driver: ORMDriver = ORMDriverResolver.resolve(driver, driver_configuration)
+        self.orm.driver = orm_driver
 
         if self.kernel.verbose(0): console.info(f"ORMDriver : {driver}")
 
         connect = orm_driver.connect(dry_run=True)
-        if isinstance(connect, sqlite3.Error): raise KernelException(
+        if isinstance(connect, sqlite3.Error): KernelException(
             "SQLConnectionException",
             f"Unable to connect to SQL database ({driver}) -> {str(connect).capitalize()}"
         )

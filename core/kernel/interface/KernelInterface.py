@@ -15,7 +15,7 @@ class KernelInterface:
         self.path = path
         self.console_mode = console
         self.verbosity_level = 0 if "-v" in sys.argv else (1 if "-vv" in sys.argv else (2 if "-vvv" in sys.argv else -1))
-        self._instance = kernel
+        KernelInterface._instance = kernel
 
         if self.verbose(0): KernelConsole.info(f"Verbosity level : {self.verbosity_level}")
 

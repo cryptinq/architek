@@ -1,3 +1,6 @@
+from core.exceptions.KernelException import KernelException
+
+
 class KernelCommandInterface:
 
     COMMANDS = {}
@@ -21,8 +24,8 @@ class KernelCommandInterface:
         list_keys = list(KernelCommandInterface.COMMANDS.keys())
         if command in list_keys: return KernelCommandInterface.COMMANDS[command]
         if command.startswith("-"): return KernelCommandInterface.COMMANDS["architek"]
-        raise Exception(f"Unknow command {command}")
-    
+        KernelException("UnknownCommandException", f"Unknow command '{command}'")
+
     @staticmethod
     def invoke(command: str):
         command = KernelCommandInterface.resolve(command)

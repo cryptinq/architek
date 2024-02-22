@@ -11,7 +11,7 @@
 * Initialize the logger (see later how to implement)
 
 ##### Core databases modules
-* Initialize the database connection
+* [OK] Initialize the database connection
 * Initialize the ORM (= entities & repositories)
 
 ##### Application services
@@ -29,4 +29,4 @@ Run `python console`
 
 
 - `entities` : entities commands
-  - `generate [--force]` : generate the entities
+  - `generate [--force]` : (re) generate the entities

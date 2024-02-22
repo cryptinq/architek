@@ -13,6 +13,8 @@ from core.kernel.console.interface.KernelConsoleInterface import KernelConsoleIn
 from core.orm.ORM import ORM
 from core.orm.interface.ORMInterface import ORMInterface
 
+from core.exceptions.interface.KernelExceptionInterface import KernelExceptionInterface
+
 
 class Kernel(KernelInterface):
 
@@ -22,8 +24,10 @@ class Kernel(KernelInterface):
         self.orm = None
 
         self.configuration: KernelConfiguration = self.bootstrap(KernelConfigurationInterface)
-        self.environnment: KernelEnvironnment = self.bootstrap(KernelEnvironnmentInterface)
+        self.env: KernelEnvironnment = self.bootstrap(KernelEnvironnmentInterface)
         self.console: KernelConsole = self.bootstrap(KernelConsoleInterface)
+
+        self.bootstrap(KernelExceptionInterface)
 
     def finalize(self):
 

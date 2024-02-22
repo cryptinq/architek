@@ -13,7 +13,7 @@ class KernelEnvironnmentInterface:
     @KernelDecorator.boot
     def boot(kernel):
         kernel_interface = KernelEnvironnmentInterface(kernel)
-        return kernel_interface
+        return kernel_interface.kernel_environnment
 
     def __init__(self, kernel):
         self.kernel = kernel
@@ -25,7 +25,7 @@ class KernelEnvironnmentInterface:
         env_file = FileSystem.from_root(".env")
 
         if not FileSystem.file_exist(env_file): raise KernelException(
-            "NonexistentEnvFileException",
+            "NonExistentEnvFileException",
             "File .env does not exist, please create a .env file first"
         )
 

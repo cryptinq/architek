@@ -21,6 +21,16 @@ class FileSystem:
     def join(*args): return os.path.join(*args)
 
     @staticmethod
+    def remove(path):
+        if isfile(path): os.remove(path)
+
+    @staticmethod
+    def write(path, content):
+        with open(path, "w") as file:
+            file.write(content)
+            file.close()
+
+    @staticmethod
     def file_exist(path):
         return os.path.isfile(path)
 
