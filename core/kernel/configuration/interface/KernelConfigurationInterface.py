@@ -21,7 +21,7 @@ class KernelConfigurationInterface:
     def initialize(self):
 
         app_configurations = [
-            "app", "app.entities", "app.logs",
+            "app", "app.logs",
             "app.services", "app.commands", "app.database",
         ]
 

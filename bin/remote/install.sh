@@ -1,6 +1,6 @@
 #!/bin/bash
 
-GIT_REPO=https://github.com/cryptinq/architek/tree/dev
+GIT_REPO="https://github.com/cryptinq/architek.git"
 
 ## Check if git is installed & get absolute path
 
@@ -35,7 +35,11 @@ fi
 
 read -p "Enter the name of the project: " project_name
 
-git clone "${GITHUB_REPO}" "$project_name"
+echo "git clone --branch dev \"${GIT_REPO}\" \"$project_name\""
+
+git clone --branch dev "${GIT_REPO}" "$project_name"
+
+cd $project_name
 
 ## Setup venv & install requirements
 
@@ -57,13 +61,20 @@ $pip_cmd install -r requirements.txt
 
 ## Everything seems OK
 
-echo "Architek installed successfully !"
 echo ""
-echo "Run 'source venv/bin/activate' to activate venv"
-echo "Run 'python console help' for more help"
+echo " --- Architek installed successfully !"
 echo ""
-echo "Happy python coding !"
-echo "$GIT_REPO"
+echo " - Next Steps :"
+echo ""
+echo "   Run 'source venv/bin/activate' to activate virtual environment"
+echo "   Edit the configuration file on the config/ folder"
+echo "   Define your schemas in database/schema/ folder"
+echo "   Run 'python console database:create' to create database"
+echo "   Run 'python console entity:generate' to generate corresponding entities"
+echo ""
+echo "   Run 'python console help' for more help"
+echo ""
+echo " -> Happy coding with the architek framework ! <-"
 
 deactivate
 
