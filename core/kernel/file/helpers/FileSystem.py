@@ -59,9 +59,8 @@ class FileSystem:
                     if ext == "*" or file.endswith(ext):
                         files.append(file)
                         break  # Move to the next file once it matches an extension
-        except FileNotFoundError:
-            # Handle the case where the directory does not exist
-            print(f"Directory '{path}' does not exist.")
+        except FileNotFoundError: pass
+
         return files
 
     @staticmethod

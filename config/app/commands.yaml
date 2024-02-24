@@ -1,9 +1,9 @@
 commands:
 
-    - name: test.test
-      description: Create database
+    - name: login
+      description: Test command
       namespace: app.commands
-      class: DatabaseCreateCommand
+      class: TestCommand
       arguments:
         - short: s
           long: seed

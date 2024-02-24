@@ -87,3 +87,27 @@ class SQLiteDriver(ORMDriver):
 
         return result if result is not None else True
 
+    def execute_many(self, statement, data, fetch=False):
+        cnx, cursor, result = self.cnx(), self.cnx().cursor(), None
+
+        try:
+            cursor.executemany(statement, data)
+
+            if fetch:
+                if fetch == "all":
+                    result = cursor.fetchall()
+                elif fetch == "one":
+                    result = cursor.fetchone()
+
+            cnx.commit()
+        except sqlite3.Error as e:
+            KernelException(
+                "SQLite3SyntaxException",
+                f"An error occurred while executing the statement with data - {str(e)}"
+            )
+            cnx.rollback()
+        finally:
+            cursor.close()
+
+        return result if result is not None else True
+

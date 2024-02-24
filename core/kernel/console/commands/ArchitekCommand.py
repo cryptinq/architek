@@ -1,11 +1,7 @@
-from core.Kernel import Kernel
 from core.kernel.console.base.BaseCommand import BaseCommand
 
 
 class ArchitekCommand(BaseCommand):
-
-    def __init__(self, kernel: Kernel):
-        super().__init__(kernel)
 
     def invoke(self):
 

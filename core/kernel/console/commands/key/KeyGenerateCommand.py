@@ -1,18 +1,22 @@
 import random
 import re
-import time
+import sys
 
-from core.Kernel import Kernel
 from core.kernel.console.base.BaseCommand import BaseCommand
 from core.kernel.file.helpers.FileSystem import FileSystem
+from core.exceptions.KernelException import KernelException
 
 
 class KeyGenerateCommand(BaseCommand):
 
-    def __init__(self, kernel: Kernel):
-        super().__init__(kernel)
-
     def invoke(self):
+
+        force = "-f" in sys.argv or "--force" in sys.argv
+
+        if self.env.has_key("APP_KEY") and not force: KernelException(
+            "AppKeyAlreadyDefinedException",
+            "Application key is already defined, use --force to overwrite current key"
+        )
 
         key = ""
         key_lenght = 64
@@ -59,7 +63,9 @@ class KeyGenerateCommand(BaseCommand):
 
         key_str_len = len(f"∑9. Application key : {key} ") - 1
 
-        self.stdout("Successfully generated application key !", "success", new_line=True)
+        if not force: self.stdout("Successfully generated application key !", "success", new_line=True)
+        if force: self.stdout("Successfully recreated application key !", "success", new_line=True)
+
         self.stdout("∑9." + (" " * key_str_len), new_line=True)
         self.stdout(f"∑9.  Application key : {key}  ")
         self.stdout("∑9." + (" " * key_str_len))

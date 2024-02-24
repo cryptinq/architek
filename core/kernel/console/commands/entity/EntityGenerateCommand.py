@@ -2,7 +2,6 @@ import sys
 from time import time
 from typing import Optional
 
-from core.Kernel import Kernel
 from core.kernel.console.base.BaseCommand import BaseCommand
 from core.orm.ORM import ORM
 from core.orm.schema.utils.EntitySchemaResolver import EntitySchemaResolver
@@ -17,8 +16,8 @@ from core.exceptions.KernelException import KernelException
 
 class EntityGenerateCommand(BaseCommand):
 
-    def __init__(self, kernel: Kernel):
-        super().__init__(kernel)
+    def __init__(self):
+        super().__init__()
         self.orm: ORM = self.kernel.app("orm")
         self.schemas: Optional[dict] = None
 
@@ -45,16 +44,14 @@ class EntityGenerateCommand(BaseCommand):
             if not force:
                 if fs.file_exist(entity["path"]): KernelException(
                     "EntityAlreadyExistsException",
-                    f"Entity '{entity_key.capitalize()}' already exist at {entity['path']} - use --force to overwrite existing"
+                    f"Entity '{entity_key.capitalize()}' already exist at {entity['path']} "
+                    f"- use --force to overwrite existing"
                 )
 
             fs.write(entity["path"], entity["stub"])
-            self.console.info(f"Created entity {entity['name']} at {entity['path']}")
+            self.console.info(f"Created entity '{entity['name']}' at {entity['path']}")
 
         (EntityORMMappingGenerator(schemas_objects)).generate_cache()
 
         print("")
         self.console.success(f"Successfully generated {len(generated_classes.keys())} entities in {((time() - start_time) * 1000):.2f}ms")
-
-    def generate(self):
-        pass

@@ -1,5 +1,6 @@
 app:
 
-  name: "My App"
+  name: "ArchiTek"
   version: "1.0.0"
-  description: "My App Description"
+  description: "Fully featured python framework"
+  env: "development" # development | production

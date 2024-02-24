@@ -17,9 +17,9 @@ class EntityORMMappingGenerator:
 
         for index, key in enumerate(self.schemas.keys()):
             schema = self.schemas[key]
-            orm_cache_mapping += f"'{key}': {schema.name}"
+            orm_cache_mapping += f"'{key}': {schema.name}, {schema.name}: '{key}'"
             orm_cache_mapping += ", " if index != len(self.schemas) - 1 else ""
-            imports.append(f"from common.entities.{schema.name} import {schema.name}")
+            imports.append(f"from app.common.entity.{schema.name} import {schema.name}")
 
         content = '\n'.join(imports) + "\n" * 2 + orm_cache_mapping + "}\n"
 

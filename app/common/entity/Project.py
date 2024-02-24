@@ -1,5 +1,5 @@
 from core.orm.entity.BaseEntity import BaseEntity
-from common.entities.User import User
+from app.common.entity.User import User
 
 
 class Project(BaseEntity):

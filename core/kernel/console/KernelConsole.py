@@ -1,6 +1,4 @@
 import inspect, json
-from datetime import datetime
-from pprint import pprint
 from core.kernel.console.helpers.colors import c
 
 
@@ -31,6 +29,9 @@ class KernelConsole:
 
     @classmethod
     def success(cls, message): print(c("∑a. SUCCESS ") + " | " + c(message))
+
+    @classmethod
+    def system(cls, message): print(c("∑5. SYSTEM ") + "  | " + c(message))
 
     @classmethod
     def debug(cls, value):

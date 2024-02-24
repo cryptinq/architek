@@ -15,6 +15,16 @@ console:
     class: HelpCommand
     description: Get list of commands
 
+  - name: make:command
+    namespace: core.kernel.console.commands.make
+    class: MakeCommandCommand
+    description: Create a new Command Class
+
+  - name: make:service
+    namespace: core.kernel.console.commands.make
+    class: MakeServiceCommand
+    description: Create a new Service Class
+
   - name: key:generate
     namespace: core.kernel.console.commands.key
     class: KeyGenerateCommand
@@ -24,6 +34,11 @@ console:
     namespace: core.kernel.console.commands.key
     class: KeyShowCommand
     description: Show the application key
+
+  - name: cache:clear
+    namespace: core.kernel.console.commands.cache
+    class: CacheClearCommand
+    description: Clear application cache
 
   - name: database:create
     description: Create database
@@ -39,6 +54,11 @@ console:
     namespace: core.kernel.console.commands.database
     class: DatabaseDropCommand
     description: Drop database
+
+  - name: schema:update
+    namespace: core.kernel.console.commands.schema
+    class: SchemaUpdateCommand
+    description: Create database, generate entity, seed database
 
   - name: database:recreate
     namespace: core.kernel.console.commands.database

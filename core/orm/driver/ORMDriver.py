@@ -17,6 +17,11 @@ class ORMDriver:
         "Driver method execute() not implemented"
     )
 
+    def execute_many(self, script, data, fetch=False): KernelException(
+        "UnimplementedMethodException",
+        "Driver method execute_many() not implemented"
+    )
+
     def execute_script(self, script, fetch=False): KernelException(
         "UnimplementedMethodException",
         "Driver method execute_script() not implemented"

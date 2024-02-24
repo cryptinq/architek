@@ -60,4 +60,4 @@ class RelationField(Field):
 
     def imports(self):
         entity_scheme = self.orm.resolve_schema(self.get_attribute("entity"))
-        return f"from common.entities.{entity_scheme.name} import {entity_scheme.name}"
+        return f"from app.common.entity.{entity_scheme.name} import {entity_scheme.name}"

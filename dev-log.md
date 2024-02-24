@@ -6,3 +6,5 @@
 
 - started working on database/factory
 - started working on database/seeder
+
+- started factory / seeder - need prbly something to make corresponding Seeder <-> Factory, a global map or something

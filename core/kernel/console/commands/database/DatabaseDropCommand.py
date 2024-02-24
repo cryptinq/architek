@@ -1,16 +1,14 @@
 from time import time
-from datetime import datetime
 from typing import Optional
 
-from core.Kernel import Kernel
 from core.kernel.console.base.BaseCommand import BaseCommand
 from core.orm.ORM import ORM
 
 
 class DatabaseDropCommand(BaseCommand):
 
-    def __init__(self, kernel: Kernel):
-        super().__init__(kernel)
+    def __init__(self):
+        super().__init__()
         self.orm: ORM = self.kernel.app("orm")
         self.schemas: Optional[dict] = None
 

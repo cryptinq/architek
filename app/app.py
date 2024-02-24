@@ -1,4 +1,4 @@
-from common.entities.Project import Project
+from common.entity.Project import Project
 
 
 class App:

@@ -13,7 +13,7 @@ class EntityGenerator:
         for schema_name in schemas.keys():
             generated_code[schema_name] = {
                 "name": schemas[schema_name].name,
-                "path": fs.from_root(fs.join("app", "common", "entities", f"{schemas[schema_name].name}.py")),
+                "path": fs.from_root(fs.join("app", "common", "entity", f"{schemas[schema_name].name}.py")),
                 "stub": self.generate_from_schema(schemas[schema_name])
             }
         return generated_code

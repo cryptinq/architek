@@ -1,3 +1,5 @@
+from time import time
+
 from core.kernel.environnment.KernelEnvironnment import KernelEnvironnment
 from core.kernel.environnment.interface.KernelEnvironnmentInterface import KernelEnvironnmentInterface
 
@@ -21,6 +23,8 @@ class Kernel(KernelInterface):
     def __init__(self, path, console=False):
         super().__init__(self, path, console)
 
+        if self.verbose(2): KernelConsole.system(f"Kernel::init()\n")
+
         self.orm = None
 
         self.configuration: KernelConfiguration = self.bootstrap(KernelConfigurationInterface)
@@ -31,8 +35,14 @@ class Kernel(KernelInterface):
 
     def finalize(self):
 
+        if self.verbose(2): KernelConsole.system(f"Kernel::finalize()\n")
+
         self.orm: ORM = self.bootstrap(ORMInterface)
         self.orm.initialize()
+
+        if self.verbose(0): self.console.success(
+            f" -- Kernel initialized successfully in {((time() - self.start_time) * 1000):.2f}ms \n"
+        )
 
         return self
 

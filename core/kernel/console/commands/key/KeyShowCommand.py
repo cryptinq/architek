@@ -1,16 +1,8 @@
-import random
-import re
-import time
-
 from core.Kernel import Kernel
 from core.kernel.console.base.BaseCommand import BaseCommand
-from core.kernel.file.helpers.FileSystem import FileSystem
 
 
 class KeyShowCommand(BaseCommand):
-
-    def __init__(self, kernel: Kernel):
-        super().__init__(kernel)
 
     def invoke(self):
 

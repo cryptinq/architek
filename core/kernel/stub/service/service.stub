@@ -1,0 +1,7 @@
+%SERVICE_TYPE_IMPORT%
+
+
+class %SERVICE_NAME%(%SERVICE_TYPE%):
+
+    def __init__(self):
+        super().__init__()

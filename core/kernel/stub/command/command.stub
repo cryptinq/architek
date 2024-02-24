@@ -1,0 +1,8 @@
+from core.kernel.console.base.BaseCommand import BaseCommand
+
+
+class %COMMAND_NAME%(BaseCommand):
+
+    def invoke(self):
+
+        self.console.info("Hello World!")

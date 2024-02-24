@@ -22,8 +22,8 @@
 Run `python console`
 
 - `database` : database commands
-  - `create` : create the database
-  - `drop` : drop the database
+  - `create` : create the database [OK]
+  - `drop` : drop the database [OK]
   - `recreate [--seed]` : drop & create the database
   - `seed` : seed the database
 

@@ -8,6 +8,6 @@ class KernelDecorator:
         def wrapper(*args, **kwargs):
             if args[0].verbose(0): KernelConsole.info(f" -- Initializing {func.__module__}")
             return_value = func(*args, **kwargs)
-            if args[0].verbose(0): KernelConsole.success(f"{func.__module__} initialized successfully")
+            if args[0].verbose(0): KernelConsole.success(f" -- {func.__module__} initialized successfully \n")
             return return_value
         return wrapper
