@@ -1,5 +1,3 @@
-from app.common.entity.Project import Project
-
 from core.kernel.Base import Base
 from app.services.ExampleService import ExampleService
 
@@ -13,5 +11,4 @@ class App(Base):
     def boot(self):
 
         self.console.info('Booting Application')
-
         self.example_service.example_method()

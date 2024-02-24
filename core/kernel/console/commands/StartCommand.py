@@ -1,4 +1,4 @@
-from app.app import App
+from app.App import App
 from core.kernel.console.base.BaseCommand import BaseCommand
 
 
