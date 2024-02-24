@@ -12,7 +12,7 @@
 
 ##### Core databases modules
 * [OK] Initialize the database connection
-* Initialize the ORM (= entities & repositories)
+* [WIP] Initialize the ORM (= entities & repositories)
 
 ##### Application services
 * Initialize the services

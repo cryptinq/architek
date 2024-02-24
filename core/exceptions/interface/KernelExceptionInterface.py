@@ -1,4 +1,4 @@
-from core.kernel.decorators.KernelDecorators import KernelDecorator
+from core.kernel.decorators.ArchitekDecorator import architek
 
 
 class KernelExceptionInterface:
@@ -6,7 +6,7 @@ class KernelExceptionInterface:
     _CONSOLE = None
 
     @staticmethod
-    @KernelDecorator.boot
+    @architek.boot
     def boot(kernel): KernelExceptionInterface._CONSOLE = kernel.app("console")
 
     @staticmethod

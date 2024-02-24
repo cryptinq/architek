@@ -1,13 +1,14 @@
 import os, json, yaml
 
 from core.kernel.configuration.KernelConfiguration import KernelConfiguration
-from core.kernel.decorators.KernelDecorators import KernelDecorator
+
+from core.kernel.decorators.ArchitekDecorator import architek
 
 
 class KernelConfigurationInterface:
 
     @staticmethod
-    @KernelDecorator.boot
+    @architek.boot
     def boot(kernel):
         kernel_interface = KernelConfigurationInterface(kernel)
         return kernel_interface.kernel_configuration
@@ -25,7 +26,7 @@ class KernelConfigurationInterface:
         ]
 
         kernel_configurations = [
-            "console", "framework"
+            "console", "framework", "services"
         ]
 
         for app_config in app_configurations:

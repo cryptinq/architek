@@ -2,15 +2,15 @@ from dotenv import dotenv_values
 
 from core.exceptions.KernelException import KernelException
 from core.kernel.console.KernelConsole import KernelConsole
-from core.kernel.decorators.KernelDecorators import KernelDecorator
 from core.kernel.environnment.KernelEnvironnment import KernelEnvironnment
 from core.kernel.file.helpers.FileSystem import FileSystem
+from core.kernel.decorators.ArchitekDecorator import architek
 
 
 class KernelEnvironnmentInterface:
 
     @staticmethod
-    @KernelDecorator.boot
+    @architek.boot
     def boot(kernel):
         kernel_interface = KernelEnvironnmentInterface(kernel)
         return kernel_interface.kernel_environnment

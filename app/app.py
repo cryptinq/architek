@@ -1,10 +1,17 @@
-from common.entity.Project import Project
+from app.common.entity.Project import Project
+
+from core.kernel.Base import Base
+from app.services.ExampleService import ExampleService
 
 
-class App:
+class App(Base):
 
-    def __init__(self, kernel=False):
-        self.kernel = kernel
+    def __init__(self):
+        super().__init__()
+        self.example_service: ExampleService = self.service("app.example")
 
     def boot(self):
-        project: Project = Project()
+
+        self.console.info('Booting Application')
+
+        self.example_service.example_method()

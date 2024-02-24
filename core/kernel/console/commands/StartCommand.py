@@ -4,5 +4,4 @@ from core.kernel.console.base.BaseCommand import BaseCommand
 
 class StartCommand(BaseCommand):
 
-    def invoke(self):
-        (App(self.kernel)).boot()
+    def invoke(self): (App()).boot()

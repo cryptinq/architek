@@ -1,7 +1,7 @@
 from core.kernel.console.KernelConsole import KernelConsole
 
 
-class KernelDecorator:
+class architek:
 
     @staticmethod
     def boot(func):

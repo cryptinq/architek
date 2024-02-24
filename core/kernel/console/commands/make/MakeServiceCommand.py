@@ -14,7 +14,7 @@ class MakeServiceCommand(BaseCommand):
         },
         "singleton": {
             "class": "SingletonService",
-            "import": "from core.kernel.services.SingletonService import SingletonService"
+            "import": "from core.kernel.services.classes.SingletonService import SingletonService"
         }
     }
 

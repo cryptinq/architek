@@ -1,13 +1,13 @@
 from core.kernel.configuration.KernelConfiguration import KernelConfiguration
 from core.kernel.console.KernelConsole import KernelConsole
 from core.kernel.console.interface.KernelCommandInterface import KernelCommandInterface
-from core.kernel.decorators.KernelDecorators import KernelDecorator
+from core.kernel.decorators.ArchitekDecorator import architek
 
 
 class KernelConsoleInterface:
 
     @staticmethod
-    @KernelDecorator.boot
+    @architek.boot
     def boot(kernel):
         kernel_interface = KernelConsoleInterface(kernel)
         return kernel_interface.kernel_console

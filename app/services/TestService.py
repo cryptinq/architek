@@ -1,5 +1,4 @@
-from core.kernel.services.BaseService import BaseService
-from core.impl.BaseSingleton import BaseSingleton
+from kernel.services.classes.BaseService import BaseService
 
 
 class TestService(BaseService):

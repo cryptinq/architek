@@ -3,16 +3,16 @@ import sqlite3
 from core.exceptions.KernelException import KernelException
 from core.kernel.configuration.KernelConfiguration import KernelConfiguration
 from core.kernel.console.KernelConsole import KernelConsole
-from core.kernel.decorators.KernelDecorators import KernelDecorator
 from core.orm.ORM import ORM
 from core.orm.driver.ORMDriver import ORMDriver
 from core.orm.driver.ORMDriverResolver import ORMDriverResolver
+from core.kernel.decorators.ArchitekDecorator import architek
 
 
 class ORMInterface:
 
     @staticmethod
-    @KernelDecorator.boot
+    @architek.boot
     def boot(kernel):
         orm_interface = ORMInterface(kernel)
         return orm_interface.orm
