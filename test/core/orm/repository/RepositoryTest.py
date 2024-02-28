@@ -34,6 +34,3 @@ class RepositoryTest(BaseTest):
         success = user_repository.save(user)
 
         self.assertEqual(success, True)
-        # self.assertEqual(user.name, name)
-        # self.assertEqual(user.email, email)
-        # self.assertEqual(user.password, password)

@@ -32,6 +32,8 @@ class ORMQuery(Base, Query):
                 self.entity.from_tuple(entity) for entity in query_result
             ] if query_result is not None else []
 
-        return result if result not in [None, False] else None
+        if fetch is None: result = query_result
+
+        return result if result not in [None, False] else False
 
 

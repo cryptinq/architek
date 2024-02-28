@@ -20,7 +20,6 @@ class App(Base):
         user_repository: UserRepository = self.repository(User)
 
         for index in range(1, 11):
-        # for index in range(10):
             user: User = user_repository.get_by_id(index)
             self.console.info(f"User #{index} - {str(user)}")
 

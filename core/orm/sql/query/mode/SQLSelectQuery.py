@@ -2,9 +2,10 @@ from typing import Optional
 
 from core.orm.entity.BaseEntity import BaseEntity
 from core.orm.schema.Schema import Schema
-from core.orm.sql.query.mode.ORMQuery import ORMQuery
+# from core.orm.sql.query.mode.ORMQuery import ORMQuery
 from core.orm.sql.query.parameters.LimitParameter import LimitParameter
 from core.orm.sql.query.parameters.WhereParameter import WhereParameters
+from core.orm.sql.query.ORMQuery import ORMQuery
 
 
 class SQLSelectQuery(ORMQuery):
@@ -21,7 +22,7 @@ class SQLSelectQuery(ORMQuery):
         self.limit: LimitParameter = limit
 
     def execute(self):
-        passw
+        pass
 
     def build_query(self) -> str:
 
@@ -29,6 +30,6 @@ class SQLSelectQuery(ORMQuery):
 
         sql_query = f"SELECT {columns} FROM {self.table}"
 
-        if len(self.where.params) != 0:
-            sql_query += f" WHERE {self.where.}"
+        # if len(self.where.params) != 0:
+            # sql_query += f" WHERE {self.where.}"
 

@@ -74,7 +74,6 @@ class SQLiteDriver(ORMDriver):
                 + f"\n State : ∑aSUCCESS∑f"
                 + f"\n Result : {result}"
             )
-
         return result if result is not None else False
 
     def execute_script(self, script, fetch=False):
