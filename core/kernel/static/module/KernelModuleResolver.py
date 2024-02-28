@@ -9,8 +9,17 @@ class KernelModuleResolver:
 
     @staticmethod
     def resolve_class(namespace: str, cls: str):
-        module = importlib.import_module(namespace)
-        return getattr(module, cls)
+
+        try:
+            module = importlib.import_module(namespace)
+            cls = getattr(module, cls)
+        except ModuleNotFoundError as e: KernelException(
+            "UnableToResolveClassException",
+            f"Could not resolve class {cls} from namespace {namespace} - {str(e)}"
+        )
+
+        return cls
+
 
     @staticmethod
     def resolve_modules(namespace: str):

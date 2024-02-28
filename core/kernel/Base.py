@@ -18,3 +18,5 @@ class Base:
     def service(self, service_name: str):
         if self.service_container is None: self.service_container = self.kernel.app("service_container")
         return self.service_container.service(service_name)
+
+    def repository(self, entity): return self.orm.get_repository(entity)

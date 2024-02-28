@@ -16,7 +16,7 @@ class SQLiteDriver(ORMDriver):
 
     def drop(self):
         database_file = fs.from_root(
-            os.path.join(self.configuration.get("path"),self.configuration.get("database"))
+            os.path.join(self.configuration.get("path"), self.configuration.get("database"))
         )
         if fs.file_exist(database_file): fs.remove(database_file)
         fs.write(database_file, "")
@@ -36,20 +36,23 @@ class SQLiteDriver(ORMDriver):
         return cnx if not dry_run and isinstance(cnx, Connection) else \
             err if err is not None else isinstance(cnx, Connection)
 
-    def execute(self, statement, fetch=False):
-        cnx, cursor, result = self.cnx(), self.cnx().cursor(), None
+    def execute(self, statement, params=False, fetch=False):
+
+        cnx, cursor, result, err = self.cnx(), self.cnx().cursor(), None, None
 
         try:
-            cursor.execute(statement)
+
+            if params: cursor.execute(statement, params)
+            else: cursor.execute(statement)
 
             if fetch:
-                if fetch == "all":
-                    result = cursor.fetchall()
-                elif fetch == "one":
-                    result = cursor.fetchone()
+                if fetch == "all": result = cursor.fetchall()
+                elif fetch == "one": result = cursor.fetchone()
+            else: result = True
 
             cnx.commit()
         except sqlite3.Error as e:
+            err = e
             KernelException(
                 "SQLite3SyntaxException",
                 f"An error occurred while executing {statement} - {str(e)}"
@@ -58,16 +61,29 @@ class SQLiteDriver(ORMDriver):
         finally:
             cursor.close()
 
-        return result if result is not None else True
+        if self.kernel.verbose(2):
+            if isinstance(result, sqlite3.Error): self.kernel.console.system(
+                f"SQLiteDriver->execute() \n Statement : {statement}"
+                + (f"\n Parameters : {str(params)}" if params else "")
+                + f"\n State : ∑cERROR"
+                + f"\n Error : {str(err)}"
+            )
+            else: self.kernel.console.system(
+                f"SQLiteDriver->execute() \n Statement : {statement}"
+                + (f"\n Parameters : {str(params)}" if params else "")
+                + f"\n State : ∑aSUCCESS∑f"
+                + f"\n Result : {result}"
+            )
+
+        return result if result is not None else False
 
     def execute_script(self, script, fetch=False):
-        cnx, cursor, result = self.cnx(), self.cnx().cursor(), None
+        cnx, cursor, result, statement = self.cnx(), self.cnx().cursor(), None, None
 
         try:
-            for statement in script.split(";"):
-                statement = statement.strip()
-                if statement:
-                    cursor.execute(statement)
+            for sql_statement in script.split(";"):
+                statement = sql_statement.strip()
+                if statement: cursor.execute(statement)
 
             if fetch:
                 if fetch == "all":
@@ -79,7 +95,8 @@ class SQLiteDriver(ORMDriver):
         except sqlite3.Error as e:
             KernelException(
                 "SQLite3SyntaxException",
-                f"An error occurred while executing the script - {str(e)}"
+                f"An error occurred while executing the script - {str(e)} \n"
+                f" SQL Statement : {statement}"
             )
             cnx.rollback()
         finally:

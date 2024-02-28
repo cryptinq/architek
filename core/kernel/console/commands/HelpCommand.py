@@ -13,7 +13,7 @@ class HelpCommand(BaseCommand):
 
     def invoke(self):
 
-        self.stdout("∑7━━━━━━━━━━━━━━━━━━━━[ ∑aHelp ∑7]━━━━━━━━━━━━━━━━━━━━")
+        self.stdout("∑7━━━━━━━━━━━━━━━━━━━━[ ∑9Help ∑7]━━━━━━━━━━━━━━━━━━━━")
         self.stdout("")
         for command in KernelCommandInterface.commands():
 
@@ -37,6 +37,6 @@ class HelpCommand(BaseCommand):
                     if self.start_groups: print("")
                 if self.is_group: self.is_group = False; print("")  # end group and print newline
 
-            self.stdout(f"∑a{command['name']} - ∑7{command['description']}")
+            self.stdout(f"∑9{command['name']} - ∑7{command['description']}")
 
             self.last_command = command["name"]

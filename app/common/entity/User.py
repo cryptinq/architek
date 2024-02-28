@@ -13,8 +13,15 @@ class User(BaseEntity):
             - password: str
     """
 
+    PRIMARY_KEY = "id"
+
     def __init__(self, name: str, email: str, password: str):
         super().__init__("id")
         self.name = name
         self.email = email
         self.password = password
+
+    @property
+    def id(self): return self._id
+    @id.setter
+    def id(self, id: int): self._id = id

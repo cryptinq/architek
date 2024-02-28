@@ -1,3 +1,5 @@
+import unittest
+
 from core.kernel.console.KernelConsole import KernelConsole
 
 
@@ -11,3 +13,10 @@ class architek:
             if args[0].verbose(0): KernelConsole.success(f" -- {func.__module__} initialized successfully \n")
             return return_value
         return wrapper
+
+    # @staticmethod
+    # def test(cls) -> unittest.TestCase:
+    #     class BaseTest(cls, unittest.TestCase):
+    #         pass
+    #     return BaseTest
+

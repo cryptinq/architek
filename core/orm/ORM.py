@@ -2,6 +2,8 @@ from __future__ import annotations
 
 from typing import Optional
 
+# from app.common.repository.UserRepository import UserRepository
+# from app.common.entity.User import User
 from core.kernel.file.helpers.FileSystem import FileSystem as fs
 from core.orm.driver.ORMDriver import ORMDriver
 from core.orm.schema.utils.EntitySchemaParser import EntitySchemaParser
@@ -10,6 +12,7 @@ from core.orm.schema.utils.EntitySchemaValidator import EntitySchemaValidator
 
 from core.orm.entity.BaseEntity import BaseEntity
 from core.orm.interface.ORMImplementationInterface import ORMImplementationInterface
+from core.orm.sql.query.QueryFactory import QueryFactory
 
 
 class ORM(ORMImplementationInterface):
@@ -39,3 +42,8 @@ class ORM(ORMImplementationInterface):
     def resolve_schema(self, key: str | BaseEntity):
         if key in self.schemas.keys(): return self.schemas[key]
         return self.entity_resolver().resolve_schema(key)
+
+    def get_repository(self, entity: BaseEntity):
+        return self.repository_resolver().resolve_repository(entity)
+
+    def query_factory(self, entity: BaseEntity): return QueryFactory(entity)

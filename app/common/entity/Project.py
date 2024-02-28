@@ -13,7 +13,14 @@ class Project(BaseEntity):
             - user: User
     """
 
+    PRIMARY_KEY = "id"
+
     def __init__(self, name: str, user: User):
         super().__init__("id")
         self.name = name
         self.user = user
+
+    @property
+    def id(self): return self._id
+    @id.setter
+    def id(self, id: int): self._id = id

@@ -9,9 +9,9 @@ class EntityPersister(Base):
     def persist_many(self, entities: list[BaseEntity]):
 
         from core.orm.ORM import ORM
-        orm = self.kernel.app("orm")
+        orm: ORM = self.kernel.app("orm")
 
-        entity_type = entities[0].__class__
+        entity_type: BaseEntity = entities[0].__class__
         for entity in entities:
             if not isinstance(entity, entity_type): KernelException(
                 "InvalidEntityTypesException",
@@ -24,9 +24,12 @@ class EntityPersister(Base):
 
         # INSERT STATEMENT
 
+        # Remove PRIMARY_KEY from values
+        fields = [field for field in schema.fields if field != entity_type.PRIMARY_KEY]
+
         sql = f"INSERT INTO {table} ("
-        for index, field in enumerate(schema.fields): sql += f"{field}" + (", " if index < len(schema.fields) - 1 else ") VALUES (")
-        for index, field in enumerate(schema.fields): sql += "?" + (", " if index < len(schema.fields) - 1 else ")")
+        for index, field in enumerate(fields): sql += f"{field}" + (", " if index < len(fields) - 1 else ") VALUES (")
+        for index, field in enumerate(fields): sql += "?" + (", " if index < len(fields) - 1 else ")")
 
         # DATA TREATMENT
 

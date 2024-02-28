@@ -3,6 +3,7 @@ from typing import Optional
 from core.orm.entity.common.EntityPersister import EntityPersister
 from core.orm.factory.FactoryManager import FactoryManager
 from core.orm.schema.utils.EntityResolver import EntityResolver
+from core.orm.schema.utils.RepositoryResolver import RepositoryResolver
 
 
 class ORMImplementationInterface:
@@ -12,6 +13,7 @@ class ORMImplementationInterface:
         self.kernel = kernel
 
         self._entity_resolver: Optional[EntityResolver] = self.entity_resolver()
+        self._repository_resolver: Optional[RepositoryResolver] = self.repository_resolver()
         self._factory_manager: Optional[FactoryManager] = self.factory_manager()
         self._entity_persister: Optional[EntityPersister] = self.entity_persister()
 
@@ -34,6 +36,10 @@ class ORMImplementationInterface:
     def entity_resolver(self):
         if not hasattr(self, "_entity_resolver"): self._entity_resolver = EntityResolver()
         return self._entity_resolver
+
+    def repository_resolver(self):
+        if not hasattr(self, "_repository_resolver"): self._repository_resolver = RepositoryResolver()
+        return self._repository_resolver
 
     def factory_manager(self):
         if not hasattr(self, "_factory_manager"): self._factory_manager = FactoryManager()

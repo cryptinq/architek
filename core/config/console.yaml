@@ -5,6 +5,11 @@ console:
     class: ArchitekCommand
     description: Architek Framework - Python
 
+  - name: test
+    namespace: core.kernel.console.commands
+    class: TestCommand
+    description: Architek Framework - Python
+
   - name: start
     namespace: core.kernel.console.commands
     class: StartCommand

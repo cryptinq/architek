@@ -1,4 +1,4 @@
-from typing import Optional, List
+from typing import Optional, List, Any
 
 from core.exceptions.KernelException import KernelException
 
@@ -15,7 +15,7 @@ class KeySet:
             if isinstance(self._configuration[key], dict) \
             else self._configuration[key]
 
-    def set(self, key: str, value): self._configuration[key] = value
+    def set(self, key: Any, value: Any): self._configuration[key] = value
 
     def is_empty(self): return len(self.keys()) == 0
 

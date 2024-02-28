@@ -14,11 +14,11 @@ class KernelException:
 
         # if not fatal, print err if verbose, else nothing
         if not fatal:
-            if KernelInterface.instance().verbose() == 1: self.print_error(exception_name, error)
+            if KernelInterface.instance().verbose() == 1: self.print_error(exception_name, error, newline=False)
 
     @classmethod
     def print_error(cls, exception_name, error, newline=True, kill=False):
         KernelExceptionInterface.get_console().error(
-            exception_name + " : " + error + ('\n' if newline else '')
+            f"∑4{exception_name}∑f" + " : " + error + ('\n' if newline else '')
         )
         if kill: exit(1)

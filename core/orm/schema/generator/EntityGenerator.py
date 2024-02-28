@@ -68,7 +68,7 @@ class EntityGenerator:
 
         return docstring_str
 
-    def primary_key(self): return f'"{self.schema.key.name}"'
+    def primary_key(self): return self.schema.key.name
 
     def imports(self):
         imports_str = ""

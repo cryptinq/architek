@@ -10,6 +10,13 @@ class %ENTITY%(BaseEntity):
 %FIELDS_DOCSTRING%
     """
 
+    PRIMARY_KEY = "%PRIMARY_KEY%"
+
     def __init__(self, %FIELDS_DEFINITION%):
-        super().__init__(%PRIMARY_KEY%)
+        super().__init__("%PRIMARY_KEY%")
 %FIELDS_INITIALIZATION%
+
+    @property
+    def %PRIMARY_KEY%(self): return self._%PRIMARY_KEY%
+    @%PRIMARY_KEY%.setter
+    def %PRIMARY_KEY%(self, %PRIMARY_KEY%: int): self._%PRIMARY_KEY% = %PRIMARY_KEY%

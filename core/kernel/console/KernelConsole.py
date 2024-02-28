@@ -19,19 +19,22 @@ class KernelConsole:
     def default(cls, message): print(c(message))
 
     @classmethod
-    def info(cls, message): print(c("∑9.∑f INFO ") + "    | " + c(message))
+    def info(cls, message): print(c("∑9.∑f INFO ") + "    | " + c(cls.format(message)))
 
     @classmethod
-    def warning(cls, message): print(c("∑e.∑f WARNING ") + " | " + c(message))
+    def warning(cls, message): print(c("∑e.∑f WARNING ") + " | " + c(cls.format(message)))
 
     @classmethod
-    def error(cls, message): print(c("∑c.∑f ERROR ") + " | " + c(message))
+    def error(cls, message): print(c("∑c.∑f ERROR ") + "   | " + c(cls.format(message)))
 
     @classmethod
-    def success(cls, message): print(c("∑a. SUCCESS ") + " | " + c(message))
+    def success(cls, message): print(c("∑a. SUCCESS ") + " | " + c(cls.format(message)))
 
     @classmethod
-    def system(cls, message): print(c("∑5. SYSTEM ") + "  | " + c(message))
+    def system(cls, message): print(c("∑5. SYSTEM ") + "  | " + c(cls.format(message)))
+
+    @classmethod
+    def format(cls, message: str) -> str: return message.replace("\n", f"\n {' ' * 8} | ")
 
     @classmethod
     def debug(cls, value):

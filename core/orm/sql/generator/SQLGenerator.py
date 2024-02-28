@@ -12,8 +12,13 @@ class SQLGenerator:
         return sql_statement
 
     def generate_from_schema(self, schema: Schema):
-        sql_statement = f"CREATE TABLE {schema.table} ("
+        sql_statement = f"CREATE TABLE {schema.table} (\n"
         for index, field_key in enumerate(schema.fields.keys()):
             field: Field = schema.fields[field_key]
-            sql_statement += f"{field.name} {field.sql()}{', ' if index != len(schema.fields) - 1 else ''}"
-        return sql_statement + ");"
+            if field.is_primary():
+                sql_statement += (f"  {field.name} {field.sql()} "
+                                  f"PRIMARY KEY NOT NULL"
+                                  + ', \n' if index != len(schema.fields) - 1 else '')
+            else:
+                sql_statement += f"  {field.name} {field.sql()}" + (', \n' if index != len(schema.fields) - 1 else '')
+        return sql_statement + "\n);"

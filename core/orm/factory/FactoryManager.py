@@ -1,3 +1,5 @@
+import sys
+
 from faker import Faker
 
 from core.impl.BaseSingleton import BaseSingleton
@@ -6,6 +8,7 @@ from core.kernel.factory.BaseFactory import BaseFactory
 from core.orm.entity.BaseEntity import BaseEntity
 from core.kernel.file.helpers.KeySet import KeySet
 from core.exceptions.KernelException import KernelException
+from core.exceptions.FatalKernelException import FatalKernelException
 
 
 class FactoryManager(BaseSingleton):
@@ -18,11 +21,16 @@ class FactoryManager(BaseSingleton):
 
     @classmethod
     def resolve_factories(cls) -> dict[BaseEntity, BaseFactory]:
-        return {
-            factory.entity: factory
-            for factory
-            in KernelModuleResolver.resolve_modules("database.factory")
-        }
+        try:
+            return {
+                factory.entity: factory
+                for factory
+                in KernelModuleResolver.resolve_modules("database.factory")
+            }
+        except FatalKernelException as e:
+            if "database:seed" in sys.argv: KernelException(e.name, e.error)
+            else: KernelException(e.name, e.error, False)
+
 
     def get_factory(self, entity: BaseEntity) -> BaseFactory:
 
