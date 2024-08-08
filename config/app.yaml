@@ -4,3 +4,6 @@ app:
   version: "1.0.0"
   description: "Fully featured python framework"
   env: "development" # development | production
+
+  use:
+    orm: false

@@ -41,9 +41,14 @@ class Kernel(KernelInterface):
 
         if self.verbose(2): KernelConsole.system(f"Kernel::finalize()\n")
 
-        # Boot up the ORM
-        self.orm: ORM = self.bootstrap(ORMInterface)
-        self.orm.initialize()
+        # Check if user wants ORM to be loaded
+        use_orm = self.configuration.get("app", "use").get('orm')
+        if self.verbose(2): KernelConsole.info(f"ORM status: {'∑cdisabled' if not use_orm else '∑aenabled'}\n")
+
+        if use_orm:
+            # Boot up the ORM if app.use.orm = false
+            self.orm: ORM = self.bootstrap(ORMInterface)
+            self.orm.initialize()
 
         # Register all the services - core one and app one
         self.service_container = self.bootstrap(KernelServiceContainerInterface)

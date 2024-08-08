@@ -34,7 +34,7 @@ class KernelConsole:
     def system(cls, message): print(c("∑5. SYSTEM ") + "  | " + c(cls.format(message)))
 
     @classmethod
-    def format(cls, message: str) -> str: return message.replace("\n", f"\n {' ' * 8} | ")
+    def format(cls, message: str) -> str: return message.replace("\n", f"∑f\n {' ' * 8} | ")
 
     @classmethod
     def debug(cls, value):
