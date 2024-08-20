@@ -2,6 +2,8 @@ from time import time
 
 from core.kernel.environnment.KernelEnvironnment import KernelEnvironnment
 from core.kernel.environnment.interface.KernelEnvironnmentInterface import KernelEnvironnmentInterface
+from core.kernel.http.KernelServer import KernelServer
+from core.kernel.http.interface.KernelServerInterface import KernelServerInterface
 
 from core.kernel.interface.KernelInterface import KernelInterface
 from core.kernel.console.interface.KernelCommandInterface import KernelCommandInterface
@@ -27,6 +29,7 @@ class Kernel(KernelInterface):
         if self.verbose(2): KernelConsole.system(f"Kernel::init()\n")
 
         self.orm = None
+        self.http_server = None
         self.service_container = None
 
         # Register the core apps "configuration", "env", "console"
@@ -43,12 +46,22 @@ class Kernel(KernelInterface):
 
         # Check if user wants ORM to be loaded
         use_orm = self.configuration.get("app", "use").get('orm')
-        if self.verbose(2): KernelConsole.info(f"ORM status: {'∑cdisabled' if not use_orm else '∑aenabled'}\n")
+        if self.verbose(2): KernelConsole.info(f"ORM status: {'∑cdisabled' if not use_orm else '∑aenabled'}")
 
         if use_orm:
-            # Boot up the ORM if app.use.orm = false
+            # Boot up the ORM if app.use.orm = true
             self.orm: ORM = self.bootstrap(ORMInterface)
             self.orm.initialize()
+
+        # Check if user wants http server to be loaded
+        use_http_server = self.configuration.get("app", "use").get('http_server')
+        if self.verbose(2): KernelConsole.info(f"HTTP Server status: {'∑cdisabled' if not use_http_server else '∑aenabled'}\n")
+
+        if use_http_server:
+            # Boot up the HTTP Server if app.use.http = true
+            self.http_server: KernelServer = self.bootstrap(KernelServerInterface)
+            self.http_server.start()
+            # self.http_server.initialize()
 
         # Register all the services - core one and app one
         self.service_container = self.bootstrap(KernelServiceContainerInterface)

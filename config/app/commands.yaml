@@ -1,11 +1,11 @@
-commands:
+commands: []
 
-    - name: login
-      description: Test command
-      namespace: app.commands
-      class: TestCommand
-      arguments:
-        - short: s
-          long: seed
-          required: false
-          value: { type: boolean, default: false }
+#    - name: test
+#      description: Test command
+#      namespace: app.commands
+#      class: TestCommand
+#      arguments:
+#        - short: t
+#          long: test
+#          required: false
+#          value: { type: boolean, default: false }

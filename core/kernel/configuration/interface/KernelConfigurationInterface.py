@@ -23,6 +23,7 @@ class KernelConfigurationInterface:
         app_configurations = [
             "app", "app.logs",
             "app.services", "app.commands", "app.database",
+            "app.http"
         ]
 
         kernel_configurations = [

@@ -1,9 +1,10 @@
 app:
 
-  name: "ArchiTek"
-  version: "1.0.0"
-  description: "Fully featured python framework"
+  name: "crypto-trading"
+  version: "indev-0"
+  description: "Automated ai-driven crypto trading bot"
   env: "development" # development | production
 
   use:
     orm: false
+    http_server: true

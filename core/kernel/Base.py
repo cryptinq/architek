@@ -10,8 +10,8 @@ class Base:
     def __init__(self, console: bool = True, orm: bool = True, configuration: bool = True, env: bool = True):
         self.kernel = KernelInterface.instance()
         self.console: KernelConsole = self.kernel.app("console") if console else None
-        self.orm = self.kernel.app("orm") if orm else None
         self.configuration: KernelConfiguration = self.kernel.app("configuration") if configuration else None
+        self.orm = self.kernel.app("orm") if orm and self.configuration.get("app", "use").get('orm') else None
         self.env: KernelEnvironnment = self.kernel.app("env") if env else None
         self.service_container = None
 

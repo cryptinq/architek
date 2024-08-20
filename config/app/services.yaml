@@ -1,3 +1,4 @@
 services:
 
-  ExampleService: { namespace: app.services, identifier: app.example, singleton: false }
+  MarketDataService: { namespace: app.services, identifier: market_data, singleton: true }
+  ArbitrageService: { namespace: app.services, identifier: arbitrage, singleton: true }

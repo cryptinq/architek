@@ -1,0 +1,13 @@
+http:
+
+  server:
+    host: 0.0.0.0
+    port: 8888
+
+  routes:
+    index: {
+      path: /,
+      controller: app.http.controller.AppController,
+      method: index,
+      http_methods: ["GET"]
+    }
